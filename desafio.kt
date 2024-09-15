@@ -1,21 +1,36 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+data class Usuario (val nome: String)
 
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class ConteudoEducacional(val nome: String, val duracao: Int, val nivel: Nivel)
 
 data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
 
     val inscritos = mutableListOf<Usuario>()
     
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+        inscritos.add(usuario)
+        println("O Usúario ${usuario.nome} acaba de se inscrever na nossa formação")
     }
 }
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+    // Criação de usuário (Instanciando)
+    val user1 = Usuario("Fillipe")
+    val user2 = Usuario("Nathany")
+    
+    // Criação de Nivel (Instanciando)
+    val basic = Nivel.BASICO
+    val advanced = Nivel.BASICO
+    
+    // Criação de ConteudoEducacional (Instanciando)
+	val cont1 = ConteudoEducacional("PHP Experience Santander", 40, basic)
+	val cont2 = ConteudoEducacional("JAVA Experience Santander", 240, advanced)
+   
+    // Criação de Formacao (Instanciando) 
+    val formacao1 = Formacao("Formação BACK-END", listOf(cont1, cont2))
+    
+    // Após criar uma isntancia de Formacao agora eu tenho acesso aos métodos da Classe.
+    formacao1.matricular(user1)
+    formacao1.matricular(user2)
 }
